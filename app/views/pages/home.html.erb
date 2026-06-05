@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impera Filme</title>
+
+<style>
+:root{
+  --gold:#d4af37;
+  --black:#070707;
+  --dark:#0f0f10;
+  --text:#eaeaea;
+  --muted:#a9a9a9;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI;
+  background: var(--black);
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+/* =========================
+   NAV PREMIUM GLASS
+========================= */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 50px;
+  background: rgba(10,10,10,0.55);
+  backdrop-filter: blur(25px);
+  border-bottom:1px solid rgba(212,175,55,0.15);
+  z-index:999;
+  transition:.4s;
+  border-radius:0; /* tira os cantos arredondados */
+}
+
+nav.scrolled{
+  background: rgba(10,10,10,0.85);
+  box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+
+.logo{
+  font-weight:600;
+  letter-spacing:3px;
+  color:var(--gold);
+  font-size:14px;
+}
+
+nav ul{
+  display:flex;
+  gap:22px;
+  list-style:none;
+}
+
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:1px;
+  transition:.25s;
+}
+
+nav a:hover{
+  color:var(--gold);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:140px 20px;
+  position:relative;
+
+  /* IMAGEM DE FUNDO */
+  background-image: url("https://images.tcdn.com.br/img/img_prod/580824/bobina_para_unitarizacao_transparente_4_5_x_8_cm_10_000_unds_535_1_f1e4718f71ab6413f800f48e6fcf6e2f.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  animation: heroZoom 18s ease-in-out infinite alternate;
+}
+
+/* overlay premium */
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(212,175,55,0.15), transparent 50%),
+    linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.9));
+}
+
+/* animação zoom */
+@keyframes heroZoom{
+  from{ background-size:105%; }
+  to{ background-size:115%; }
+}
+
+.hero-content{
+  position:relative;
+  max-width:900px;
+  z-index:2;
+}
+
+.hero h1{
+  font-size:clamp(40px,5vw,72px);
+  color:#d4af37;
+  letter-spacing:2px;
+}
+
+.hero p{
+  margin-top:18px;
+  font-size:18px;
+  color:#d0d0d0;
+  line-height:1.8;
+}
+
+.buttons{
+  margin-top:35px;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:13px 24px;
+  border-radius:12px;
+  border:1px solid rgba(212,175,55,0.35);
+  color:var(--gold);
+  text-decoration:none;
+  transition:.3s;
+  font-size:14px;
+  letter-spacing:1px;
+}
+
+.btn:hover{
+  background:var(--gold);
+  color:black;
+  transform:translateY(-4px);
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+section{
+  padding:140px 20px;
+  max-width:1200px;
+  margin:auto;
+  position:relative;
+}
+
+section:nth-of-type(even){
+  background: rgba(255,255,255,0.015);
+  border-top:1px solid rgba(212,175,55,0.05);
+  border-bottom:1px solid rgba(212,175,55,0.05);
+}
+
+h2{
+  text-align:center;
+  color:var(--gold);
+  font-size:40px;
+  margin-bottom:50px;
+  letter-spacing:2px;
+}
+
+.text{
+  max-width:850px;
+  margin:auto;
+  text-align:center;
+  color:var(--muted);
+  line-height:1.9;
+  font-size:17px;
+}
+
+/* =========================
+   PRODUTOS
+========================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+
+.card{
+  background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.3));
+  border:1px solid rgba(212,175,55,0.12);
+  border-radius:18px;
+  padding:30px;
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter: blur(10px);
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:-60%;
+  left:-40%;
+  width:200%;
+  height:200%;
+  background: radial-gradient(circle, rgba(212,175,55,0.08), transparent 60%);
+  transform:rotate(25deg);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(212,175,55,0.4);
+  box-shadow:0 30px 80px rgba(0,0,0,0.7);
+}
+
+.card h3{
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+/* =========================
+   FERRAMENTAS
+========================= */
+.tools{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.tool{
+  padding:22px;
+  border-radius:14px;
+  background: rgba(255,255,255,0.02);
+  border:1px solid rgba(212,175,55,0.12);
+  transition:.3s;
+  color:var(--muted);
+  backdrop-filter: blur(6px);
+}
+
+.tool:hover{
+  transform:translateY(-6px);
+  border-color:rgba(212,175,55,0.3);
+}
+
+/* =========================
+   CONTATO (WhatsApp)
+========================= */
+.contact-box{
+  text-align:center;
+  padding:40px;
+  border-radius:20px;
+  border:1px solid rgba(212,175,55,0.15);
+  background: rgba(255,255,255,0.02);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+  text-align:center;
+  padding:70px 20px;
+  border-top:1px solid rgba(212,175,55,0.12);
+  color:#777;
+  font-size:13px;
+}
+
+/* RESPONSIVO */
+@media(max-width:768px){
+  nav{
+    flex-direction:column;
+    gap:10px;
+  }
+  .hero h1{ font-size:clamp(32px,8vw,50px); }
+  .hero p{ font-size:16px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="nav">
+  <div class="logo">Impera Filme</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#quem">Quem somos</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#ferramentas">Ferramentas</a></li>
+    <li><a href="#contato">Fale conosco</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Filmes Plásticos PVC Industrial</h1>
+    <p>Alta performance, acabamento premium e soluções industriais para embalagens e aplicações técnicas.</p>
+    <div class="buttons">
+      <a class="btn" href="https://wa.me/5511999999999">WhatsApp</a>
+      <a class="btn" href="https://instagram.com/seu_instagram">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOMOS -->
+<section id="quem">
+  <h2>Quem Somos</h2>
+  <p class="text">
+    Atuamos no fornecimento de filmes PVC industriais com foco em precisão técnica,
+    qualidade superior e soluções sob medida para o setor produtivo.
+  </p>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <h2>Produtos</h2>
+  <div class="grid">
+    <div class="card"><h3>Transparente</h3><p class="text">Alta clareza e resistência.</p></div>
+    <div class="card"><h3>Colorido</h3><p class="text">Variedade industrial.</p></div>
+    <div class="card"><h3>Técnico</h3><p class="text">Alta performance.</p></div>
+  </div>
+</section>
+
+<!-- FERRAMENTAS -->
+<section id="ferramentas">
+  <h2>Ferramentas</h2>
+  <div class="tools">
+    <div class="tool">Calculadora técnica</div>
+    <div class="tool">Simulador de uso</div>
+    <div class="tool">Amostras industriais</div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <h2>Fale Conosco</h2>
+  <div class="contact-box">
+    <p class="text">Fale diretamente com nossa equipe via WhatsApp</p>
+    <div class="buttons">
+      <a class="btn" href="https://wa.me/5511999999999?text=Gostaria%20de%20mais%20informações">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Filmes PVC Industrial — Todos os direitos reservados
+</footer>
+
+<script>
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 50);
+});
+</script>
+
+</body>
+</html>
